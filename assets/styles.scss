@@ -1,0 +1,133 @@
+@import url("https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@400;0,600;1,300&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap");
+
+$colors: (
+  primary: #c0c0c0,
+  bg: #a7a9ff,
+  dark: #1d1d1d,
+  light: #d6d7ff,
+  wht: #fff,
+  gry: #797979,
+);
+
+@function color($color-name) {
+  @return map-get($map: $colors, $key: $color-name);
+}
+
+@mixin pseudo($content: "") {
+  position: absolute;
+  content: $content;
+}
+
+@mixin transition(
+  $property: all,
+  $duration: 0.65s,
+  $ease: cubic-bezier(0.165, 0.84, 0.44, 1)
+) {
+  transition: $property $duration $ease;
+}
+
+* {
+  box-sizing: border-box;
+  &::before,
+  &::after {
+    box-sizing: inherit;
+  }
+}
+
+body {
+  font-family: "Work Sans", sans-serif;
+  font-size: 0.8rem;
+  font-weight: 400;
+  line-height: 1.25;
+  margin: 0;
+  padding: 0;
+  color: color(dark);
+  background: color(light);
+  text-rendering: optimizeLegibility;
+}
+
+.image-holder {
+  width: 100vw;
+  text-align: center;
+  margin-top: 4rem;
+}
+
+img {
+  width: 12.5rem;
+  border-radius: 50%;
+}
+
+.links {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+
+.links > a {
+  font-family: "Poppins", sans-serif;
+  align-self: center;
+  width: 80vw;
+  max-width: 600px;
+  min-width: 210px;
+}
+
+.btn {
+  position: relative;
+  display: block;
+  color: color(dark);
+  border: 1px solid color(dark);
+  padding: 1.2rem 3rem;
+  margin: 0.75rem 0;
+  font-family: inherit;
+  font-size: 0.85rem;
+  font-weight: 400;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  transform: translate(0);
+  letter-spacing: 0.1rem;
+  &.fill {
+    background: color(primary);
+  }
+
+  &:hover {
+    color: color(accent);
+    &::before {
+      @include transition(transform, 0.65s, cubic-bezier(0.165, 0.84, 0.44, 1));
+      transform: scaleY(1);
+      transform-origin: 0%;
+    }
+  }
+  &::before {
+    @include pseudo();
+    @include transition(transform, 0.65s, cubic-bezier(0.165, 0.84, 0.44, 1));
+    z-index: -1;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: color(wht);
+    transform: scaleY(0);
+    transform-origin: 100%;
+  }
+}
+
+footer {
+  display: flex;
+  justify-content: center;
+  color: color(dark);
+  font-size: 2rem;
+}
+
+ul > a {
+  color: color(gry);
+  margin-right: 1.6rem;
+}
+
+ul > a:hover,
+ul > a:active {
+  color: color(dark);
+  transition: 0.42s ease-in-out;
+}
