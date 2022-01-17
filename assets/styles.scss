@@ -2,12 +2,11 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap");
 
 $colors: (
-  primary: #c0c0c0,
-  bg: #a7a9ff,
+  bg: #c42cf3,
   dark: #1d1d1d,
   light: #d6d7ff,
   wht: #fff,
-  gry: #797979,
+  gry: #6dcff0,
 );
 
 @function color($color-name) {
@@ -42,9 +41,61 @@ body {
   line-height: 1.25;
   margin: 0;
   padding: 0;
-  color: color(dark);
-  background: color(light);
+  color: color(light);
+  background: color(dark);
   text-rendering: optimizeLegibility;
+}
+
+/* Navbar */
+
+nav a {
+  color: color(gry);
+  text-decoration: none;
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.abt > a {
+  color: color(secondary);
+}
+
+#navbar {
+  display: flex;
+  justify-content: space-between;
+  background-color: color(wht);
+  padding: 0.8rem 4rem;
+  z-index: 2000;
+}
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100vw;
+}
+
+.header-area {
+  position: relative;
+
+  #logo {
+    width: 45px;
+    height: 45px;
+  }
+
+  .links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    text-align: right;
+  }
+
+  .links li {
+    display: inline-block;
+    margin-left: 30px;
+    color: color(dark);
+    cursor: pointer;
+  }
 }
 
 .image-holder {
@@ -76,8 +127,8 @@ img {
 .btn {
   position: relative;
   display: block;
-  color: color(dark);
-  border: 1px solid color(dark);
+  color: color(light);
+  border: 1px solid color(light);
   padding: 1.2rem 3rem;
   margin: 0.75rem 0;
   font-family: inherit;
@@ -89,11 +140,11 @@ img {
   transform: translate(0);
   letter-spacing: 0.1rem;
   &.fill {
-    background: color(primary);
+    background: color(bg);
   }
 
   &:hover {
-    color: color(accent);
+    color: color(dark);
     &::before {
       @include transition(transform, 0.65s, cubic-bezier(0.165, 0.84, 0.44, 1));
       transform: scaleY(1);
@@ -108,7 +159,7 @@ img {
     left: 0;
     right: 0;
     bottom: 0;
-    background: color(wht);
+    background: color(bg);
     transform: scaleY(0);
     transform-origin: 100%;
   }
@@ -117,17 +168,17 @@ img {
 footer {
   display: flex;
   justify-content: center;
-  color: color(dark);
+  color: color(bg);
   font-size: 2rem;
 }
 
 ul > a {
-  color: color(gry);
+  color: color(bg);
   margin-right: 1.6rem;
 }
 
 ul > a:hover,
 ul > a:active {
-  color: color(dark);
+  color: color(gry);
   transition: 0.42s ease-in-out;
 }
